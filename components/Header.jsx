@@ -8,8 +8,8 @@ const navigation = [
   ['Beranda', '#beranda'],
   ['Kemahasiswaan', '#kemahasiswaan'],
   ['Al-Islam & AIK', '#aik'],
-  ['Informasi Kegiatan', '#agenda'],
   ['Layanan', '#layanan'],
+  ['Informasi Kegiatan', '#agenda'],
 ];
 
 export default function Header() {

@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import CountUp from './reactbits/CountUp';
 
 export default function Hero() {
   return (
@@ -36,16 +37,16 @@ export default function Hero() {
 
         <div className="hero-split__stats" role="list">
           <div role="listitem">
-            <strong>6</strong>
-            <span>Program Studi</span>
+            <strong><CountUp from={0} to={6} duration={1.1} className="count-up-text" /></strong>
+            <span className="hero-stat__label">Program Studi</span>
           </div>
           <div role="listitem">
-            <strong>174+</strong>
-            <span>PT Muhammadiyah</span>
+            <strong><CountUp from={0} to={174} duration={1.4} className="count-up-text" /><span aria-hidden="true">+</span></strong>
+            <span className="hero-stat__label">PT Muhammadiyah</span>
           </div>
           <div role="listitem">
-            <strong>Sejak 2021</strong>
-            <span>Kampus Siber #1</span>
+            <strong><span>Sejak</span> <CountUp from={2000} to={2021} duration={1.4} className="count-up-text" /></strong>
+            <span className="hero-stat__label">Kampus Siber #1</span>
           </div>
         </div>
       </div>

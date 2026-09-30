@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function PageIntro() {
   const [phase, setPhase] = useState('visible');
@@ -57,8 +58,9 @@ export default function PageIntro() {
   return (
     <div className={`page-intro ${phase}`} aria-hidden="true">
       <div className="intro-pattern" />
-      <div className="intro-mark" />
-      <p>UNIVERSITAS SIBER MUHAMMADIYAH</p>
+      <div className="intro-mark">
+        <Image src="/images/sibermu-logo.webp" alt="" width={220} height={52} priority />
+      </div>
       <strong>EduPortal SiberMu</strong>
       <span>ILMU · IMAN · AMAL</span>
       <i />

@@ -12,13 +12,13 @@ export default function ScrollFloat({
   containerClassName = '',
   textClassName = '',
   animationDuration = 1,
-  ease = 'back.inOut(2)',
+  ease = 'power2.out',
   scrollStart = 'top bottom-=10%',
   scrollEnd = 'bottom center+=25%',
   stagger = 0.04,
   as: Component = 'div',
   style = {},
-  scrub = 1.2
+  scrub = 0.65
 }) {
   const containerRef = useRef(null);
   const isString = typeof children === 'string';
@@ -56,18 +56,13 @@ export default function ScrollFloat({
       const initialVars = {
         willChange: 'opacity, transform',
         opacity: 0,
-        yPercent: 120,
-        scaleY: 2.3,
-        scaleX: 0.7,
-        transformOrigin: '50% 0%'
+        yPercent: 52
       };
       const targetVars = {
         duration: animationDuration,
         ease: ease,
         opacity: 1,
         yPercent: 0,
-        scaleY: 1,
-        scaleX: 1,
         stagger: stagger,
         scrollTrigger: {
           trigger: el,
