@@ -52,15 +52,17 @@ const programs = [
 export default function StudyPrograms() {
   return (
     <section className="section" id="program-studi" style={{ paddingTop: 40, paddingBottom: 60 }}>
-      <div className="section-head">
-        <div>
-          <div className="eyebrow">PENDIDIKAN JARAK JAUH</div>
-          <ScrollFloat>6 Program Studi Unggulan</ScrollFloat>
+      <ScrollFloat>
+        <div className="section-head">
+          <div>
+            <div className="eyebrow">PENDIDIKAN JARAK JAUH</div>
+            <ScrollFloat>6 Program Studi Unggulan</ScrollFloat>
+          </div>
+          <ScrollReveal>
+            Kurikulum terintegrasi teknologi mutakhir dan nilai Islam berkemajuan, dirancang fleksibel untuk mahasiswa PJJ.
+          </ScrollReveal>
         </div>
-        <ScrollReveal>
-          Kurikulum terintegrasi teknologi mutakhir dan nilai Islam berkemajuan, dirancang fleksibel untuk mahasiswa PJJ.
-        </ScrollReveal>
-      </div>
+      </ScrollFloat>
 
       <ScrollFloat>
         <div className="prodi-grid" style={{
