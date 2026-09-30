@@ -1,22 +1,56 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { gsap } from 'gsap';
 
 export default function Hero() {
+  const statsRef = useRef(null);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const counters = Array.from(statsRef.current?.querySelectorAll('[data-count]') || []);
+    const tweens = counters.map((element) => {
+      const target = Number(element.dataset.count);
+      const prefix = element.dataset.prefix || '';
+      const suffix = element.dataset.suffix || '';
+      const startingValue = target === 2021
+        ? Math.floor(1945 + Math.random() * 155)
+        : Math.floor(Math.random() * Math.max(30, target * 4));
+      const counter = { value: startingValue };
+      const renderValue = () => `${prefix}${Math.round(counter.value)}${suffix}`;
+
+      element.textContent = renderValue();
+      return gsap.to(counter, {
+        value: target,
+        duration: 1.35,
+        ease: 'power2.out',
+        roundProps: 'value',
+        onUpdate: () => {
+          element.textContent = renderValue();
+        },
+        onComplete: () => {
+          element.textContent = `${prefix}${target}${suffix}`;
+        }
+      });
+    });
+
+    return () => tweens.forEach((tween) => tween.kill());
+  }, []);
+
   return (
     <section className="hero-split" id="beranda" aria-label="Portal Kemahasiswaan SiberMu">
-      <h1 className="sr-only">Portal Kemahasiswaan dan AIK Universitas Siber Muhammadiyah</h1>
-
       {/* ── Left: copy ── */}
       <div className="hero-split__copy">
-        <span className="hero-split__eyebrow">KAMPUS SIBER · ISLAM BERKEMAJUAN</span>
+        <span className="hero-split__eyebrow"><span className="hero-split__index">01</span><span>KAMPUS SIBER · ISLAM BERKEMAJUAN</span></span>
 
-        <p className="hero-split__headline" aria-hidden="true">
+        <h1 className="hero-split__headline">
           Ilmu yang<br />Membentuk<br /><em className="hero-split__accent">Karakter.</em>
-        </p>
+        </h1>
 
         <p className="hero-split__desc">
-          Portal informasi kemahasiswaan dan Al-Islam & Kemuhammadiyahan Universitas Siber Muhammadiyah — satu tempat untuk perjalanan akademikmu.
+          Portal informasi kemahasiswaan dan Al-Islam & Kemuhammadiyahan Universitas Siber Muhammadiyah, satu tempat untuk perjalanan akademikmu.
         </p>
 
         <div className="hero-split__actions">
@@ -34,28 +68,24 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="hero-split__stats" role="list">
-          <div role="listitem">
-            <strong>6</strong>
-            <span>Program Studi</span>
+        <div className="hero-split__stats" role="list" ref={statsRef}>
+          <div role="listitem" aria-label="6 Program Studi">
+            <strong data-count="6" aria-hidden="true">6</strong>
+            <span aria-hidden="true">Program Studi</span>
           </div>
-          <div role="listitem">
-            <strong>174+</strong>
-            <span>PT Muhammadiyah</span>
+          <div role="listitem" aria-label="174 atau lebih Perguruan Tinggi Muhammadiyah">
+            <strong data-count="174" data-suffix="+" aria-hidden="true">174+</strong>
+            <span aria-hidden="true">PT Muhammadiyah</span>
           </div>
-          <div role="listitem">
-            <strong>Sejak 2021</strong>
-            <span>Kampus Siber #1</span>
+          <div role="listitem" aria-label="Sejak 2021, Kampus Siber nomor satu">
+            <strong data-count="2021" data-prefix="Sejak " aria-hidden="true">Sejak 2021</strong>
+            <span aria-hidden="true">Kampus Siber #1</span>
           </div>
         </div>
       </div>
 
       {/* ── Right: visual ── */}
       <div className="hero-split__visual" aria-hidden="true">
-        {/* Decorative blobs */}
-        <div className="hero-split__blob hero-split__blob--gold" />
-        <div className="hero-split__blob hero-split__blob--green" />
-
         <div className="hero-split__img-wrap">
           <Image
             src="/images/campus-activity.webp"
@@ -73,8 +103,8 @@ export default function Hero() {
         <div className="hero-split__badge">
           <span className="hero-split__badge-icon">✦</span>
           <div>
-            <strong>Pembelajaran Jarak Jauh</strong>
-            <span>Fleksibel · Terjangkau · Berkualitas</span>
+            <strong>Dari kampus ke komunitas</strong>
+            <span>Ilmu tumbuh menjadi dampak</span>
           </div>
         </div>
       </div>

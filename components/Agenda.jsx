@@ -21,7 +21,7 @@ export default function Agenda() {
     </div>
     <div className="filter-group" role="group" aria-label="Filter informasi">{['Semua', 'Kemahasiswaan', 'AIK'].map(item => <button key={item} aria-pressed={item === filter} onClick={() => setFilter(item)}>{item}</button>)}</div>
     <p className="sr-only" aria-live="polite">{items.length} informasi ditampilkan</p>
-    <div className="event-list">{items.map(item => <article className="event" key={item.title}>
+    <div className="event-list" key={filter}>{items.map((item, index) => <article className="event" key={item.title} style={{ '--item-index': index }}>
       <div className="event-symbol"><Icon name={item.icon} size={29} /></div><div className="event-copy"><span className="category-label">{item.label}</span><h3>{item.title}</h3><p>{item.text}</p></div>
       {item.href ? <a href={item.href} className="button outline" target="_blank" rel="noreferrer">Baca selengkapnya</a> : <InfoButton title={item.title} label="Informasi kegiatan" className="button outline">{item.detail}</InfoButton>}
     </article>)}</div>

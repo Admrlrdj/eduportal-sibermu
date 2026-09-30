@@ -34,7 +34,12 @@ export default function SynergySection() {
       <div className="section-head">
         <div>
           <div className="eyebrow">SINERGI INTEGRAL</div>
-          <ScrollFloat>Bagaimana Kemahasiswaan & AIK Melebur?</ScrollFloat>
+          <ScrollFloat
+            containerClassName="synergy-heading"
+            mobileText={'Bagaimana\nKemahasiswaan & AIK\nMelebur?'}
+          >
+            {'Bagaimana Kemahasiswaan & AIK\nMelebur?'}
+          </ScrollFloat>
         </div>
         <ScrollReveal>
           Teknologi tinggi dan akhlak mulia berjalan beriringan membentuk lulusan yang kompeten dan berintegritas.
@@ -87,6 +92,9 @@ export default function SynergySection() {
       </div>
 
       <style dangerouslySetInnerHTML={{__html: `
+        .synergy-card h3 {
+          min-height: 2.7em;
+        }
         .synergy-card:hover {
           transform: translateY(-5px);
           box-shadow: 0 20px 45px rgba(11, 22, 38, 0.09);
