@@ -51,14 +51,9 @@ export default function ScrollFloat({
 
     const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
 
-    let targets;
-    let initialVars;
-    let targetVars;
-
     if (isString) {
-      // String mode: animate each character
-      targets = el.querySelectorAll('.scroll-float-char');
-      initialVars = {
+      const targets = el.querySelectorAll('.scroll-float-char');
+      const initialVars = {
         willChange: 'opacity, transform',
         opacity: 0,
         yPercent: 120,
@@ -66,7 +61,7 @@ export default function ScrollFloat({
         scaleX: 0.7,
         transformOrigin: '50% 0%'
       };
-      targetVars = {
+      const targetVars = {
         duration: animationDuration,
         ease: ease,
         opacity: 1,
@@ -82,49 +77,65 @@ export default function ScrollFloat({
           scrub: scrub
         }
       };
-    } else {
-      const subItems = el.querySelectorAll(
-        '.scroll-float-item, .why-feature-card, .prodi-card, .synergy-card, .community-card, .service-card, .event, .accordion-item, .why-sibermu-box, .section-head, .filter-group, .aik-image-column, .aik-copy, .closing-inner'
-      );
+      const tween = gsap.fromTo(targets, initialVars, targetVars);
 
-      targets = subItems.length > 0 ? subItems : (el.children.length > 0 ? Array.from(el.children) : [el]);
+      return () => {
+        if (tween.scrollTrigger) tween.scrollTrigger.kill();
+        tween.kill();
+      };
+    }
 
-      initialVars = {
+    const contentSelector = [
+      '.section-head',
+      '.why-feature-card',
+      '.prodi-card',
+      '.section-visual',
+      '.section-note',
+      '.synergy-card',
+      '.aik-image-column',
+      '.aik-copy',
+      '.react-bits-folder',
+      '.filter-group',
+      '.event',
+      '.faq-section > div:first-child',
+      '.accordion-item',
+      '.closing-inner'
+    ].join(', ');
+    const subItems = Array.from(el.querySelectorAll(contentSelector));
+    const targets = subItems.length > 0
+      ? subItems
+      : (el.children.length > 0 ? Array.from(el.children) : [el]);
+
+    const tweens = targets.map((target) => gsap.fromTo(
+      target,
+      {
         willChange: 'opacity, transform',
         opacity: 0,
-        y: 28
-      };
-
-      targetVars = {
+        y: 34,
+        scale: 0.985
+      },
+      {
         duration: Math.min(animationDuration, 0.72),
         ease: 'power2.out',
         opacity: 1,
         y: 0,
-        stagger: stagger || 0.06,
+        scale: 1,
+        clearProps: 'willChange',
         scrollTrigger: {
-          trigger: el,
+          trigger: target,
           scroller,
-          start: 'top 86%',
+          start: 'top 92%',
           once: true,
           toggleActions: 'play none none none'
         }
-      };
-    }
-
-    const tween = gsap.fromTo(targets, initialVars, targetVars);
-
-    // Viewport check fallback
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.5 && rect.bottom > 0) {
-      // If already well within view, ensure elements are visible
-      gsap.to(targets, { opacity: 1, y: 0, duration: 0.35 });
-    }
+      }
+    ));
 
     return () => {
-      if (tween.scrollTrigger) {
-        tween.scrollTrigger.kill();
-      }
-      tween.kill();
+      tweens.forEach((tween) => {
+        if (tween.scrollTrigger) tween.scrollTrigger.kill();
+        tween.kill();
+      });
     };
   }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger, isString, scrub]);
 

@@ -24,7 +24,7 @@ export default function StudentLife() {
         </ScrollReveal>
       </div>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%', marginBottom: 30 }}>
+      <div className="section-visual" style={{ maxWidth: 1200, margin: '0 auto', width: '100%', marginBottom: 30 }}>
         <AccordionGallery
           items={items}
           defaultIndex={1}

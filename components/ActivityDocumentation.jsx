@@ -68,7 +68,7 @@ export default function ActivityDocumentation() {
         </ScrollReveal>
       </div>
 
-      <div style={{ width: '100%', marginTop: 20 }}>
+      <div className="section-visual" style={{ width: '100%', marginTop: 20 }}>
         <Masonry
           items={galleryItems}
           ease="power3.out"
