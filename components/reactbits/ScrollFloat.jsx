@@ -33,13 +33,15 @@ export default function ScrollFloat({
   containerClassName = '',
   textClassName = '',
   animationDuration = 1,
-  ease = 'back.inOut(2)',
-  scrollStart = 'top bottom-=10%',
-  scrollEnd = 'bottom center+=25%',
+  ease = 'power2.out',
+  scrollStart = 'top 92%',
+  scrollEnd = 'bottom 8%',
   stagger = 0.04,
   as: Component = 'div',
   style = {},
-  scrub = 1.2
+  scrub = 0.65,
+  animationKey,
+  replayOnScroll = true
 }) {
   const containerRef = useRef(null);
   const isString = typeof children === 'string';
@@ -70,25 +72,22 @@ export default function ScrollFloat({
       const initialVars = {
         willChange: 'opacity, transform',
         opacity: 0,
-        yPercent: 120,
-        scaleY: 2.3,
-        scaleX: 0.7,
-        transformOrigin: '50% 0%'
+        yPercent: 52
       };
       const targetVars = {
         duration: animationDuration,
         ease: ease,
         opacity: 1,
         yPercent: 0,
-        scaleY: 1,
-        scaleX: 1,
         stagger: stagger,
         scrollTrigger: {
           trigger: el,
           scroller,
           start: scrollStart,
           end: scrollEnd,
-          scrub: scrub
+          scrub: replayOnScroll ? false : scrub,
+          toggleActions: replayOnScroll ? 'play reverse play reverse' : undefined,
+          invalidateOnRefresh: true
         }
       };
       const tween = gsap.fromTo(targets, initialVars, targetVars);
@@ -108,12 +107,17 @@ export default function ScrollFloat({
       '.synergy-card',
       '.aik-image-column',
       '.aik-copy',
-      '.react-bits-folder',
+      '.folder-tabs',
+      '.service-card',
       '.filter-group',
       '.event',
       '.faq-section > div:first-child',
       '.accordion-item',
-      '.closing-inner'
+      '.closing-inner',
+      '.hero-split__copy',
+      '.hero-split__visual',
+      '.footer-top > div',
+      '.footer-bottom'
     ].join(', ');
     const subItems = Array.from(el.querySelectorAll(contentSelector));
     const targets = subItems.length > 0
@@ -139,8 +143,9 @@ export default function ScrollFloat({
           trigger: target,
           scroller,
           start: 'top 92%',
-          once: true,
-          toggleActions: 'play none none none'
+          end: 'bottom 8%',
+          toggleActions: 'play reverse play reverse',
+          invalidateOnRefresh: true
         }
       }
     ));
@@ -150,8 +155,9 @@ export default function ScrollFloat({
         if (tween.scrollTrigger) tween.scrollTrigger.kill();
         tween.kill();
       });
+      gsap.set(targets, { clearProps: 'opacity,transform,willChange' });
     };
-  }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger, isString, scrub]);
+  }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger, isString, scrub, animationKey, replayOnScroll]);
 
   if (isString) {
     return (

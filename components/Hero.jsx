@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
+import CountUp from './reactbits/CountUp';
 
 export default function Hero() {
   const statsRef = useRef(null);
@@ -68,18 +68,18 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="hero-split__stats" role="list" ref={statsRef}>
-          <div role="listitem" aria-label="6 Program Studi">
-            <strong data-count="6" aria-hidden="true">6</strong>
-            <span aria-hidden="true">Program Studi</span>
+        <div className="hero-split__stats" role="list">
+          <div role="listitem">
+            <strong><CountUp from={0} to={6} duration={1.1} className="count-up-text" /></strong>
+            <span className="hero-stat__label">Program Studi</span>
           </div>
-          <div role="listitem" aria-label="174 atau lebih Perguruan Tinggi Muhammadiyah">
-            <strong data-count="174" data-suffix="+" aria-hidden="true">174+</strong>
-            <span aria-hidden="true">PT Muhammadiyah</span>
+          <div role="listitem">
+            <strong><CountUp from={0} to={174} duration={1.4} className="count-up-text" /><span aria-hidden="true">+</span></strong>
+            <span className="hero-stat__label">PT Muhammadiyah</span>
           </div>
-          <div role="listitem" aria-label="Sejak 2021, Kampus Siber nomor satu">
-            <strong data-count="2021" data-prefix="Sejak " aria-hidden="true">Sejak 2021</strong>
-            <span aria-hidden="true">Kampus Siber #1</span>
+          <div role="listitem">
+            <strong><span>Sejak</span> <CountUp from={2000} to={2021} duration={1.4} className="count-up-text" /></strong>
+            <span className="hero-stat__label">Kampus Siber #1</span>
           </div>
         </div>
       </div>

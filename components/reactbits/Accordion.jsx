@@ -41,7 +41,7 @@ function AccordionItem({ title, content, isOpen, onClick }) {
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '20px', cursor: 'pointer', background: 'transparent', border: 'none', textAlign: 'left', fontSize: 16, fontWeight: 650 }}
       >
         {title}
-        <div style={{ transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease', color: 'var(--green)' }}>
+        <div className="accordion-mark">
           <Icon name="plus" size={20} />
         </div>
       </button>

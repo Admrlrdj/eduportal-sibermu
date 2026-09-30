@@ -30,44 +30,23 @@ export default function BackToTop() {
     }
   };
 
-  const circumference = 2 * Math.PI * 20; // r=20
-  const strokeDashoffset = circumference - (progress / 100) * circumference;
-
   return (
     <button
       onClick={handleClick}
       aria-label="Kembali ke atas"
       className={`back-to-top${visible ? ' back-to-top--visible' : ''}`}
     >
-      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" aria-hidden="true">
-        {/* Track */}
-        <circle
-          cx="26" cy="26" r="20"
-          stroke="rgba(197,161,91,0.2)"
-          strokeWidth="2.5"
-          fill="none"
-        />
-        {/* Progress */}
-        <circle
-          cx="26" cy="26" r="20"
-          stroke="var(--gold)"
-          strokeWidth="2.5"
-          fill="none"
-          strokeDasharray={circumference}
-          strokeDashoffset={strokeDashoffset}
-          strokeLinecap="round"
-          transform="rotate(-90 26 26)"
-          style={{ transition: 'stroke-dashoffset 0.15s ease' }}
-        />
-        {/* Arrow up */}
+      <span className="back-to-top__label">TOP</span>
+      <svg className="back-to-top__arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <path
-          d="M26 32V20M20 26l6-6 6 6"
+          d="M8 13V3M4 7l4-4 4 4"
           stroke="white"
-          strokeWidth="2"
+          strokeWidth="1.6"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
       </svg>
+      <span className="back-to-top__progress" style={{ transform: `scaleX(${progress / 100})` }} aria-hidden="true" />
     </button>
   );
 }
