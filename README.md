@@ -18,12 +18,13 @@ npm run build
 npm start
 ```
 
-Hasil ekspor statis berada di `out/`; `npm start` membuka http://127.0.0.1:3001. `npm run lint` memeriksa sumber aplikasi. Next.js 16.3.7 dan React 19.3.0 terkunci melalui `package-lock.json`. Tidak ada pustaka carousel, UI, ikon, atau animasi tambahan.
+Hasil ekspor statis berada di `out/`; `npm start` membuka http://127.0.0.1:3001. `npm run lint` memeriksa sumber aplikasi. Next.js 16.3.7 dan React 19.3.0 terkunci melalui `package-lock.json`. Ikon dan carousel tetap dibuat lokal; Lenis 1.3.26 menangani smooth scrolling dan GSAP 3.15.0 mendukung komponen reveal React Bits yang disimpan di dalam proyek.
 
 ## Isi dan interaksi
 
 - Header universitas dengan logo asli, navigasi jangkar, dan menu ponsel.
 - Carousel tiga sorotan: tombol sebelumnya/berikutnya, pemilih slide, tombol panah keyboard, serta putar otomatis opsional. Secara bawaan carousel diam; preferensi reduced motion dihormati.
+- Intro singkat saat halaman dimuat, reveal konten berbasis React Bits, dan smooth scrolling Lenis; seluruh gerak dinonaktifkan atau disederhanakan saat pengguna memilih reduced motion.
 - Kartu Organisasi Mahasiswa, Unit Kegiatan Mahasiswa, dan Prestasi Mahasiswa dengan gambar.
 - Bagian AIK: pembinaan nilai, karakter, dan informasi kegiatan.
 - Pilihan layanan Mahasiswa/Dosen; E-learning dan Yudisium mengarah ke situs universitas.
@@ -39,6 +40,8 @@ Tidak ada tanggal agenda, nama organisasi, atau penghargaan rekaan yang dipresen
 | `app/globals.css` | Tema formal, responsivitas, fokus, dan reduced motion |
 | `app/layout.js` | Metadata, bahasa Indonesia, favicon |
 | `components/Hero.jsx` | Tiga sorotan carousel dan kontrol |
+| `components/reactbits/AnimatedContent.jsx` | Reveal section yang diadaptasi dari React Bits |
+| `components/SmoothScroll.jsx` | Integrasi Lenis dengan animation loop GSAP |
 | `components/` | Blok UI lainnya |
 | `data/content.js` | Data kartu, layanan, informasi, AIK, dan FAQ |
 | `public/images/` | Gambar WebP yang disajikan secara lokal |

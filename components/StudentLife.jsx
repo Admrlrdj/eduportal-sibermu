@@ -1,14 +1,39 @@
-import Image from 'next/image';
 import { communities } from '../data/content';
-import InfoButton from './InfoButton';
+import AccordionGallery from './reactbits/AccordionGallery';
+import ScrollReveal from './reactbits/ScrollReveal';
+import ScrollFloat from './reactbits/ScrollFloat';
 
 export default function StudentLife() {
-  return <section className="section" id="kemahasiswaan">
-    <div className="section-head"><div><div className="eyebrow">BIDANG KEMAHASISWAAN</div><h2>Pengembangan Diri dan<br className="desktop-break" /> Kehidupan Mahasiswa</h2></div><p>Mendukung mahasiswa untuk berorganisasi, mengembangkan kemampuan, dan menghadirkan karya yang bermanfaat.</p></div>
-    <div className="community-grid">{communities.map(item => <article className="community-card" key={item.name}>
-      <div className="card-photo"><Image src={item.image} alt={item.alt} fill sizes="(max-width: 760px) 90vw, 30vw" /></div>
-      <div className="community-body"><span className="category-label">{item.category}</span><h3>{item.name}</h3><p>{item.description}</p>{item.href ? <a className="card-link" href={item.href} target="_blank" rel="noreferrer">Baca publikasi universitas</a> : <InfoButton title={item.name} label="Informasi selengkapnya">{item.detail}</InfoButton>}</div>
-    </article>)}</div>
-    <div className="section-note"><span className="note-rule" /><p>Pengembangan potensi dan pembinaan karakter merupakan bagian dari perjalanan pendidikan mahasiswa.</p></div>
-  </section>;
+  const items = communities.map(c => ({
+    image: c.image,
+    label: c.name,
+    alt: c.alt,
+    description: c.description,
+    link: c.href
+  }));
+
+  return (
+    <section className="section" id="kemahasiswaan">
+      <div className="section-head">
+        <div>
+          <div className="eyebrow">BIDANG KEMAHASISWAAN</div>
+          <ScrollFloat>Pengembangan Diri & Kehidupan Mahasiswa</ScrollFloat>
+        </div>
+        <ScrollReveal>
+          Mendukung mahasiswa untuk berorganisasi, mengembangkan kemampuan, dan menghadirkan karya yang bermanfaat.
+        </ScrollReveal>
+      </div>
+
+      <div className="section-visual" style={{ maxWidth: 1200, margin: '0 auto', width: '100%', marginBottom: 30 }}>
+        <AccordionGallery
+          items={items}
+          defaultIndex={1}
+          expandRatio={0.52}
+          height={460}
+        />
+      </div>
+
+      <div className="section-note"><span className="note-rule" /><p>Pengembangan potensi dan pembinaan karakter merupakan bagian dari perjalanan pendidikan mahasiswa.</p></div>
+    </section>
+  );
 }
