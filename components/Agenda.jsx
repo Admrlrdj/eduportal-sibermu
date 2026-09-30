@@ -32,9 +32,8 @@ export default function Agenda() {
             type="button"
             aria-pressed={isActive}
             onClick={() => setFilter(item)}
-            whileTap={{ scale: 0.96 }}
           >
-            {isActive && <motion.span className="filter-chip__active" layoutId="agenda-filter-active" transition={{ type: 'spring', stiffness: 420, damping: 34 }} />}
+            {isActive && <motion.span className="filter-chip__active" layoutId="agenda-filter-active" transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }} />}
             <span className="filter-chip__label">{item}</span>
           </motion.button>;
         })}
