@@ -427,9 +427,12 @@ button:disabled { cursor: default; }
 .service-card .card-link { margin-top: auto; }
 .agenda-section { border-top: 1px solid var(--line); }
 .filter-group { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 21px; }
-.filter-group button { padding: 9px 19px; background: white; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: 14px; }
-.filter-group button[aria-pressed='true'] { background: var(--navy); color: white; border-color: var(--navy); box-shadow: 0 7px 16px #122b4a1f; }
+.filter-group button { position: relative; isolation: isolate; overflow: hidden; padding: 9px 19px; background: white; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: 14px; transition: color .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.filter-group button[aria-pressed='true'] { color: white; border-color: var(--navy); box-shadow: 0 7px 16px #122b4a1f; }
+.filter-chip__active { position: absolute; z-index: 0; inset: -1px; border-radius: inherit; background: var(--navy); }
+.filter-chip__label { position: relative; z-index: 1; }
 .event-list { display: grid; gap: 13px; }
+.event-motion-shell { min-width: 0; }
 .event { display: flex; align-items: center; gap: 25px; padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: #fff; }
 .event-symbol { min-width: 68px; height: 68px; display: grid; place-items: center; border-radius: 16px; background: var(--pale); color: var(--green); }
 .event-copy { max-width: 750px; }

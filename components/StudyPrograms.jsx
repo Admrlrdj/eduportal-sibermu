@@ -62,13 +62,14 @@ export default function StudyPrograms() {
         </ScrollReveal>
       </div>
 
-      <div className="prodi-grid" style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-        gap: '24px'
-      }}>
-        {programs.map((prodi, idx) => (
-          <div key={idx} className="prodi-card" style={{
+      <ScrollFloat>
+        <div className="prodi-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '24px'
+        }}>
+          {programs.map(prodi => (
+            <article key={prodi.name} className="prodi-card" style={{
             background: '#ffffff',
             borderRadius: '20px',
             border: '1px solid var(--line)',
@@ -128,9 +129,10 @@ export default function StudyPrograms() {
                 Detail prodi &rarr;
               </a>
             </div>
-          </div>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
+      </ScrollFloat>
 
       <style dangerouslySetInnerHTML={{__html: `
         .prodi-card:hover {

@@ -18,7 +18,8 @@ export default function ScrollFloat({
   stagger = 0.04,
   as: Component = 'div',
   style = {},
-  scrub = 0.65
+  scrub = 0.65,
+  animationKey
 }) {
   const containerRef = useRef(null);
   const isString = typeof children === 'string';
@@ -131,8 +132,9 @@ export default function ScrollFloat({
         if (tween.scrollTrigger) tween.scrollTrigger.kill();
         tween.kill();
       });
+      gsap.set(targets, { clearProps: 'opacity,transform,willChange' });
     };
-  }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger, isString, scrub]);
+  }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger, isString, scrub, animationKey]);
 
   if (isString) {
     return (

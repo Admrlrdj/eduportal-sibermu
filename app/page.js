@@ -17,14 +17,14 @@ import { faqs } from '../data/content';
 export default function Page() {
   return <><a className="skip-link" href="#main">Lewati ke konten</a><Header /><main id="main"><Hero />
     <ScrollFloat><WhySiberMu /></ScrollFloat>
-    <ScrollFloat><StudyPrograms /></ScrollFloat>
+    <StudyPrograms />
     <div className="section-divider" aria-hidden="true" />
     <ScrollFloat><StudentLife /></ScrollFloat>
     <ScrollFloat><SynergySection /></ScrollFloat>
     <div className="section-divider" aria-hidden="true" />
     <ScrollFloat><AikSection /></ScrollFloat>
     <ScrollFloat><Services /></ScrollFloat>
-    <ScrollFloat><Agenda /></ScrollFloat>
+    <Agenda />
     <ScrollFloat><section className="section faq-section" id="pertanyaan"><div><div className="eyebrow">PUSAT INFORMASI</div><h2>Pertanyaan<br />yang Sering Diajukan</h2><ScrollReveal>Informasi awal untuk membantu Anda menemukan layanan dan kegiatan yang sesuai.</ScrollReveal><a className="card-link" href="#kontak">Hubungi kanal universitas</a></div><Accordion data={faqs} /></section></ScrollFloat>
     <div className="section-divider" aria-hidden="true" />
     <ScrollFloat><ActivityDocumentation /></ScrollFloat>
