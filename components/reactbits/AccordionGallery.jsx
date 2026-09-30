@@ -398,15 +398,41 @@ export default function AccordionGallery({
           .ag-container {
             flex-direction: column !important;
             perspective: none !important;
-            height: 500px !important;
+            height: auto !important;
+            gap: 10px !important;
           }
           .ag-panel {
-            min-height: 84px !important;
+            flex: 0 0 142px !important;
+            height: 142px !important;
             transform: none !important;
+          }
+          .ag-panel[aria-current='true'] {
+            flex: 0 0 176px !important;
+            height: 176px !important;
+            box-shadow: 0 0 0 2px var(--ag-accent), 0 12px 28px rgba(11, 22, 38, 0.18);
           }
           .ag-media {
             width: 100% !important;
-            height: var(--ag-media-size, 320px) !important;
+            height: 100% !important;
+            filter: grayscale(0) !important;
+          }
+          .ag-labels {
+            bottom: 14px;
+            left: 14px;
+            right: 14px;
+          }
+          .ag-bar,
+          .ag-text {
+            opacity: 1 !important;
+            transform: none !important;
+          }
+          .ag-bar {
+            height: 38px;
+          }
+          .ag-text {
+            font-size: 1rem;
+            white-space: normal;
+            text-overflow: clip;
           }
           .ag-description {
             display: none !important;

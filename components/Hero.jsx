@@ -1,23 +1,56 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import CountUp from './reactbits/CountUp';
 
 export default function Hero() {
+  const statsRef = useRef(null);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const counters = Array.from(statsRef.current?.querySelectorAll('[data-count]') || []);
+    const tweens = counters.map((element) => {
+      const target = Number(element.dataset.count);
+      const prefix = element.dataset.prefix || '';
+      const suffix = element.dataset.suffix || '';
+      const startingValue = target === 2021
+        ? Math.floor(1945 + Math.random() * 155)
+        : Math.floor(Math.random() * Math.max(30, target * 4));
+      const counter = { value: startingValue };
+      const renderValue = () => `${prefix}${Math.round(counter.value)}${suffix}`;
+
+      element.textContent = renderValue();
+      return gsap.to(counter, {
+        value: target,
+        duration: 1.35,
+        ease: 'power2.out',
+        roundProps: 'value',
+        onUpdate: () => {
+          element.textContent = renderValue();
+        },
+        onComplete: () => {
+          element.textContent = `${prefix}${target}${suffix}`;
+        }
+      });
+    });
+
+    return () => tweens.forEach((tween) => tween.kill());
+  }, []);
+
   return (
     <section className="hero-split" id="beranda" aria-label="Portal Kemahasiswaan SiberMu">
-      <h1 className="sr-only">Portal Kemahasiswaan dan AIK Universitas Siber Muhammadiyah</h1>
-
       {/* ── Left: copy ── */}
       <div className="hero-split__copy">
-        <span className="hero-split__eyebrow">KAMPUS SIBER · ISLAM BERKEMAJUAN</span>
+        <span className="hero-split__eyebrow"><span className="hero-split__index">01</span><span>KAMPUS SIBER · ISLAM BERKEMAJUAN</span></span>
 
-        <p className="hero-split__headline" aria-hidden="true">
+        <h1 className="hero-split__headline">
           Ilmu yang<br />Membentuk<br /><em className="hero-split__accent">Karakter.</em>
-        </p>
+        </h1>
 
         <p className="hero-split__desc">
-          Portal informasi kemahasiswaan dan Al-Islam & Kemuhammadiyahan Universitas Siber Muhammadiyah — satu tempat untuk perjalanan akademikmu.
+          Portal informasi kemahasiswaan dan Al-Islam & Kemuhammadiyahan Universitas Siber Muhammadiyah, satu tempat untuk perjalanan akademikmu.
         </p>
 
         <div className="hero-split__actions">
@@ -53,10 +86,6 @@ export default function Hero() {
 
       {/* ── Right: visual ── */}
       <div className="hero-split__visual" aria-hidden="true">
-        {/* Decorative blobs */}
-        <div className="hero-split__blob hero-split__blob--gold" />
-        <div className="hero-split__blob hero-split__blob--green" />
-
         <div className="hero-split__img-wrap">
           <Image
             src="/images/campus-activity.webp"
@@ -74,8 +103,8 @@ export default function Hero() {
         <div className="hero-split__badge">
           <span className="hero-split__badge-icon">✦</span>
           <div>
-            <strong>Pembelajaran Jarak Jauh</strong>
-            <span>Fleksibel · Terjangkau · Berkualitas</span>
+            <strong>Dari kampus ke komunitas</strong>
+            <span>Ilmu tumbuh menjadi dampak</span>
           </div>
         </div>
       </div>

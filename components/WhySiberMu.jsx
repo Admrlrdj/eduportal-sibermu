@@ -12,7 +12,7 @@ const features = [
 
 export default function WhySiberMu() {
   return (
-    <section className="section" id="mengapa-sibermu" style={{ paddingTop: 60, paddingBottom: 60 }}>
+    <section className="section why-sibermu-section" id="mengapa-sibermu" style={{ paddingTop: 60, paddingBottom: 60 }}>
       <div className="section-head" style={{ display: 'block', maxWidth: 900, margin: '0 auto 60px', textAlign: 'center' }}>
         <div className="eyebrow" style={{ justifyContent: 'center' }}>KEUNGGULAN SIBERMU</div>
         <ScrollFloat style={{ marginBottom: 32 }}>Mengapa Memilih SiberMu?</ScrollFloat>
