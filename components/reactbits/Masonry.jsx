@@ -220,6 +220,7 @@ export default function Masonry({
       style={{
         position: 'relative',
         width: '100%',
+        overflow: 'clip',
         minHeight: `${totalHeight}px`,
         height: `${totalHeight}px`,
         transition: 'height 0.3s ease'

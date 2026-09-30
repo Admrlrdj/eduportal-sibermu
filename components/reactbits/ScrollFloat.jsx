@@ -6,8 +6,29 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const splitIntoWords = (text, keyPrefix) => text.split(/(\s+)/).map((token, tokenIndex) => {
+  if (/^\s+$/.test(token)) {
+    return <span key={`${keyPrefix}-${tokenIndex}`} style={{ whiteSpace: 'pre' }}>{token}</span>;
+  }
+
+  return (
+    <span key={`${keyPrefix}-${tokenIndex}`} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+      {Array.from(token).map((char, charIndex) => (
+        <span
+          className="scroll-float-char"
+          key={charIndex}
+          style={{ display: 'inline-block', willChange: 'opacity, transform' }}
+        >
+          {char}
+        </span>
+      ))}
+    </span>
+  );
+});
+
 export default function ScrollFloat({
   children,
+  mobileText,
   scrollContainerRef,
   containerClassName = '',
   textClassName = '',
@@ -25,19 +46,12 @@ export default function ScrollFloat({
 
   const splitText = useMemo(() => {
     if (!isString) return null;
-    return children.split('').map((char, index) => (
-      <span
-        className="scroll-float-char"
-        key={index}
-        style={{
-          display: 'inline-block',
-          willChange: 'opacity, transform'
-        }}
-      >
-        {char === ' ' ? '\u00A0' : char}
-      </span>
-    ));
+    return splitIntoWords(children, 'desktop');
   }, [children, isString]);
+  const mobileSplitText = useMemo(
+    () => (mobileText ? splitIntoWords(mobileText, 'mobile') : null),
+    [mobileText]
+  );
 
   useEffect(() => {
     const el = containerRef.current;
@@ -144,6 +158,7 @@ export default function ScrollFloat({
       <h2
         ref={containerRef}
         className={`scroll-float-container ${containerClassName}`}
+        aria-label={mobileText ? children.replace(/\s+/g, ' ').trim() : undefined}
         style={{
           overflow: 'hidden',
           lineHeight: 1.25,
@@ -151,7 +166,12 @@ export default function ScrollFloat({
         }}
       >
         <span className={`scroll-float-inner ${textClassName}`} style={{ display: 'inline-block' }}>
-          {splitText}
+          {mobileText ? (
+            <>
+              <span className="scroll-float-copy--desktop" aria-hidden="true">{splitText}</span>
+              <span className="scroll-float-copy--mobile" aria-hidden="true">{mobileSplitText}</span>
+            </>
+          ) : splitText}
         </span>
       </h2>
     );

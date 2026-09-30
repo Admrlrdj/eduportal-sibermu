@@ -17,7 +17,12 @@ export default function StudentLife() {
       <div className="section-head">
         <div>
           <div className="eyebrow">BIDANG KEMAHASISWAAN</div>
-          <ScrollFloat>Pengembangan Diri & Kehidupan Mahasiswa</ScrollFloat>
+          <ScrollFloat
+            containerClassName="student-life-heading"
+            mobileText={'Pengembangan Diri &\nKehidupan Mahasiswa'}
+          >
+            {'Pengembangan Diri & Kehidupan\nMahasiswa'}
+          </ScrollFloat>
         </div>
         <ScrollReveal>
           Mendukung mahasiswa untuk berorganisasi, mengembangkan kemampuan, dan menghadirkan karya yang bermanfaat.
