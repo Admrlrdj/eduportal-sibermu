@@ -6,7 +6,6 @@ import { information } from '../data/content';
 import InfoButton from './InfoButton';
 import Icon from './Icon';
 import ScrollFloat from './reactbits/ScrollFloat';
-import ScrollReveal from './reactbits/ScrollReveal';
 
 export default function Agenda() {
   const [filter, setFilter] = useState('Semua');
@@ -18,9 +17,9 @@ export default function Agenda() {
           <div className="eyebrow">PUBLIKASI & KEGIATAN</div>
           <h2>Temukan Jalur<br />Aktivitas Kampusmu</h2>
         </div>
-        <ScrollReveal>
+        <p>
           Pilih minat utama untuk melihat rekomendasi UKM dan program AIK yang paling cocok dengan potensimu.
-        </ScrollReveal>
+        </p>
       </div>
     </ScrollFloat>
     <ScrollFloat>
