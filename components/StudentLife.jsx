@@ -1,7 +1,5 @@
 import { communities } from '../data/content';
 import AccordionGallery from './reactbits/AccordionGallery';
-import ScrollReveal from './reactbits/ScrollReveal';
-import ScrollFloat from './reactbits/ScrollFloat';
 
 export default function StudentLife() {
   const items = communities.map(c => ({
@@ -17,16 +15,11 @@ export default function StudentLife() {
       <div className="section-head">
         <div>
           <div className="eyebrow">BIDANG KEMAHASISWAAN</div>
-          <ScrollFloat
-            containerClassName="student-life-heading"
-            mobileText={'Pengembangan Diri &\nKehidupan Mahasiswa'}
-          >
-            {'Pengembangan Diri & Kehidupan\nMahasiswa'}
-          </ScrollFloat>
+          <h2>Pengembangan Diri & Kehidupan Mahasiswa</h2>
         </div>
-        <ScrollReveal>
+        <p>
           Mendukung mahasiswa untuk berorganisasi, mengembangkan kemampuan, dan menghadirkan karya yang bermanfaat.
-        </ScrollReveal>
+        </p>
       </div>
 
       <div className="section-visual" style={{ maxWidth: 1200, margin: '0 auto', width: '100%', marginBottom: 30 }}>

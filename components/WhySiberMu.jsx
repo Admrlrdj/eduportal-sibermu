@@ -1,5 +1,3 @@
-import ScrollReveal from './reactbits/ScrollReveal';
-import ScrollFloat from './reactbits/ScrollFloat';
 import Icon from './Icon';
 
 const features = [
@@ -15,11 +13,11 @@ export default function WhySiberMu() {
     <section className="section why-sibermu-section" id="mengapa-sibermu" style={{ paddingTop: 60, paddingBottom: 60 }}>
       <div className="section-head" style={{ display: 'block', maxWidth: 900, margin: '0 auto 60px', textAlign: 'center' }}>
         <div className="eyebrow" style={{ justifyContent: 'center' }}>KEUNGGULAN SIBERMU</div>
-        <ScrollFloat style={{ marginBottom: 32 }}>Mengapa Memilih SiberMu?</ScrollFloat>
+        <h2 style={{ marginBottom: 32 }}>Mengapa Memilih SiberMu?</h2>
         <div className="why-sibermu-box">
-          <ScrollReveal textClassName="why-sibermu-desc">
+          <p className="why-sibermu-desc">
             Muhammadiyah telah terbukti dalam menyelenggarakan pendidikan mulai dari tingkat dasar hingga perguruan tinggi. Jaringan pendidikan Muhammadiyah tersebar di seluruh Indonesia. Muhammadiyah memiliki lebih dari 23.000 TKAB/PAUD yang dikelola oleh ‘Aisyiyah. Sekolah tingkat dasar dan menengah sekitar 12 ribuan dan Perguruan Tinggi ada 174 Perguruan Tinggi. Hal ini menunjukan komitmen Muhammadiyah dalam mengembangkan pendidikan di Indonesia.
-          </ScrollReveal>
+          </p>
         </div>
       </div>
 
