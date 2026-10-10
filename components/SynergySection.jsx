@@ -1,8 +1,6 @@
 'use client';
 
 import Icon from './Icon';
-import ScrollReveal from './reactbits/ScrollReveal';
-import ScrollFloat from './reactbits/ScrollFloat';
 
 export default function SynergySection() {
   const pillars = [
@@ -34,16 +32,11 @@ export default function SynergySection() {
       <div className="section-head">
         <div>
           <div className="eyebrow">SINERGI INTEGRAL</div>
-          <ScrollFloat
-            containerClassName="synergy-heading"
-            mobileText={'Bagaimana\nKemahasiswaan & AIK\nMelebur?'}
-          >
-            {'Bagaimana Kemahasiswaan & AIK\nMelebur?'}
-          </ScrollFloat>
+          <h2>Bagaimana Kemahasiswaan & AIK Melebur?</h2>
         </div>
-        <ScrollReveal>
+        <p>
           Teknologi tinggi dan akhlak mulia berjalan beriringan membentuk lulusan yang kompeten dan berintegritas.
-        </ScrollReveal>
+        </p>
       </div>
 
       <div className="synergy-bento" style={{

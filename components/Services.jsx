@@ -4,8 +4,6 @@ import { services } from '../data/content';
 import Icon from './Icon';
 import InfoButton from './InfoButton';
 import Folder from './reactbits/Folder';
-import ScrollReveal from './reactbits/ScrollReveal';
-import ScrollFloat from './reactbits/ScrollFloat';
 
 export default function Services() {
   const tabs = Object.keys(services);
@@ -13,11 +11,11 @@ export default function Services() {
     <div className="section-head">
       <div>
         <div className="eyebrow">AKSES LAYANAN</div>
-        <ScrollFloat>Informasi dan Layanan Akademik</ScrollFloat>
+        <h2>Informasi dan Layanan Akademik</h2>
       </div>
-      <ScrollReveal>
+      <p>
         Akses informasi yang relevan untuk mendukung kegiatan mahasiswa dan dosen.
-      </ScrollReveal>
+      </p>
     </div>
     <Folder tabs={tabs}>
       {tabs.map(role => (

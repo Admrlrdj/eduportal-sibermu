@@ -1,7 +1,6 @@
 'use client';
 
 import Icon from './Icon';
-import ScrollReveal from './reactbits/ScrollReveal';
 import ScrollFloat from './reactbits/ScrollFloat';
 
 const programs = [
@@ -56,11 +55,11 @@ export default function StudyPrograms() {
         <div className="section-head">
           <div>
             <div className="eyebrow">PENDIDIKAN JARAK JAUH</div>
-            <ScrollFloat>6 Program Studi Unggulan</ScrollFloat>
+            <h2>6 Program Studi Unggulan</h2>
           </div>
-          <ScrollReveal>
+          <p>
             Kurikulum terintegrasi teknologi mutakhir dan nilai Islam berkemajuan, dirancang fleksibel untuk mahasiswa PJJ.
-          </ScrollReveal>
+          </p>
         </div>
       </ScrollFloat>
 

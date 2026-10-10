@@ -1,8 +1,6 @@
 'use client';
 
 import Masonry from './reactbits/Masonry';
-import ScrollReveal from './reactbits/ScrollReveal';
-import ScrollFloat from './reactbits/ScrollFloat';
 
 const galleryItems = [
   {
@@ -61,11 +59,11 @@ export default function ActivityDocumentation() {
       <div className="section-head">
         <div>
           <div className="eyebrow">DOKUMENTASI NYATA</div>
-          <ScrollFloat>Galeri Kegiatan & Aktivitas Mahasiswa</ScrollFloat>
+          <h2>Galeri Kegiatan & Aktivitas Mahasiswa</h2>
         </div>
-        <ScrollReveal>
+        <p>
           Potret/entusiasme mahasiswa SiberMu dalam kegiatan belajar jarak jauh, webinar nasional, kolaborasi riset, dan pengabdian masyarakat.
-        </ScrollReveal>
+        </p>
       </div>
 
       <div className="section-visual" style={{ width: '100%', marginTop: 20 }}>
